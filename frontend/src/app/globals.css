@@ -1,0 +1,312 @@
+@import url("https://fonts.googleapis.com/css2?family=Archivo+Black&family=Roboto:wght@300;400;500;700;900&family=Syncopate:wght@400;700&display=swap");
+@import "tailwindcss";
+
+/* ============================================================
+   NEXT-GEN FOOTBALL HUB — Design System
+   Dark Mode Luxueux + Glassmorphism + Accents Dorés
+   Basé sur UI/UX Pro Max Skill (Sports Team/Club #75)
+   ============================================================ */
+
+/* ---------- Design Tokens ---------- */
+:root {
+  /* Core palette — Dark Mode luxueux */
+  --background: #050505;
+  --foreground: #F8FAFC;
+
+  /* Card surfaces — glassmorphism */
+  --card: rgba(255, 255, 255, 0.04);
+  --card-foreground: #F8FAFC;
+
+  /* Primary — Bleu Électrique */
+  --primary: #0070f3;
+  --primary-foreground: #FFFFFF;
+
+  /* Secondary — Bleu nuit */
+  --secondary: #1E293B;
+  --secondary-foreground: #F8FAFC;
+
+  /* Accent — Or luxueux */
+  --accent: #D4AF37;
+  --accent-foreground: #050505;
+
+  /* Muted surfaces */
+  --muted: #1A1E2F;
+  --muted-foreground: #94A3B8;
+
+  /* Borders — subtle glass */
+  --border: rgba(255, 255, 255, 0.08);
+
+  /* Interactive states */
+  --ring: #0070f3;
+  --input: rgba(255, 255, 255, 0.06);
+
+  /* Status colors */
+  --destructive: #EF4444;
+  --destructive-foreground: #FFFFFF;
+  --success: #22C55E;
+  --warning: #F59E0B;
+
+  /* Border radius */
+  --radius: 0.75rem;
+
+  /* Glassmorphism values */
+  --glass-blur: 16px;
+  --glass-bg: rgba(255, 255, 255, 0.04);
+  --glass-border: rgba(255, 255, 255, 0.08);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+}
+
+/* ---------- Tailwind Theme Inline ---------- */
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+
+  --font-heading: "Syncopate", sans-serif;
+  --font-body: "Roboto", sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 8px);
+
+  /* Custom animation keyframes */
+  --animate-shimmer: shimmer 1.5s infinite;
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 2s ease-in-out infinite;
+  --animate-slide-up: slide-up 0.4s ease-out;
+  --animate-fade-in: fade-in 0.3s ease-out;
+}
+
+/* ---------- Keyframe Animations ---------- */
+
+/* Skeleton shimmer loader effect */
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* Floating animation for decorative elements */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+/* Pulse glow for active/live indicators */
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(0, 112, 243, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 112, 243, 0.6), 0 0 40px rgba(0, 112, 243, 0.2);
+  }
+}
+
+/* Slide up for page/component entry */
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fade in */
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Text glow shimmer */
+@keyframes text-shimmer {
+  0%, 100% {
+    text-shadow: 0 0 10px rgba(0, 112, 243, 0.2), 0 0 20px rgba(0, 112, 243, 0.1);
+    opacity: 0.8;
+  }
+  50% {
+    text-shadow: 0 0 20px rgba(0, 112, 243, 0.5), 0 0 40px rgba(0, 112, 243, 0.3), 0 0 60px rgba(0, 112, 243, 0.1);
+    opacity: 1;
+  }
+}
+
+/* ---------- Base Styles ---------- */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* Headings use Barlow Condensed for sports impact */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 400; /* Archivo Black only has 400 weight */
+  letter-spacing: -0.02em;
+}
+
+/* ---------- Glassmorphism Utilities ---------- */
+
+.glass {
+  background: var(--glass-bg);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+}
+
+.glass-hover {
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.glass-hover:hover {
+  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 32px rgba(0, 112, 243, 0.15), 0 0 0 1px rgba(0, 112, 243, 0.1);
+}
+
+/* ---------- Skeleton Loader ---------- */
+
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.04) 25%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.04) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: var(--radius);
+}
+
+/* ---------- Scrollbar Styling (Dark theme) ---------- */
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ---------- Selection Styling ---------- */
+
+::selection {
+  background: rgba(0, 112, 243, 0.3);
+  color: #FFFFFF;
+}
+
+/* ---------- Gold Accent Gradient Text ---------- */
+
+.text-sekuya {
+  font-family: "Syncopate", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  background: linear-gradient(135deg, #FF00FF 0%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  filter: drop-shadow(0 0 12px rgba(255, 0, 255, 0.4));
+  font-weight: 700;
+}
+
+.text-gradient-gold {
+  background: linear-gradient(135deg, #D4AF37 0%, #F5D26E 50%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Electric Blue Gradient Text */
+.text-gradient-blue {
+  background: linear-gradient(135deg, #0070f3 0%, #38BDF8 50%, #0070f3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.animate-text-glow {
+  animation: text-shimmer 3s ease-in-out infinite;
+}
+
+.neon-border {
+  position: relative;
+}
+
+.neon-border::after {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  background: linear-gradient(90deg, transparent, var(--primary), transparent);
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+  z-index: -1;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.neon-border:hover::after {
+  opacity: 1;
+}
+
+/* ---------- Parallax Helper ---------- */
+
+.parallax-container {
+  overflow: hidden;
+  position: relative;
+}
+
+.parallax-bg {
+  position: absolute;
+  inset: -20%;
+  z-index: 0;
+  will-change: transform;
+}
