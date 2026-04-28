@@ -102,6 +102,22 @@ export default function DashboardLayout({
               </Link>
             );
           })}
+          
+          <div className="pt-4 mt-4 border-t border-white/5">
+            <Link href="/">
+              <div className="flex items-center gap-3 px-3 py-3 rounded-xl text-sm font-medium text-muted-foreground hover:text-primary hover:bg-primary/5 transition-all group">
+                <ChevronLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
+                {!isCollapsed && (
+                  <motion.span
+                    initial={{ opacity: 0, x: -10 }}
+                    animate={{ opacity: 1, x: 0 }}
+                  >
+                    Retour au Site
+                  </motion.span>
+                )}
+              </div>
+            </Link>
+          </div>
         </div>
 
         {/* Sidebar Footer (User Profile) */}

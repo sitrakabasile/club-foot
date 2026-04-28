@@ -103,14 +103,44 @@ async function main() {
     }
   });
 
-  // Add dummy finances
-  await prisma.finance.createMany({
-    data: [
-      { label: "Sponsor Royal", amount: 1000000, type: "INCOME", category: "SPONSORSHIP" },
-      { label: "Ventes Merch", amount: 250000, type: "INCOME", category: "SHOP" },
-      { label: "Salaires", amount: -400000, type: "EXPENSE", category: "SALARY" },
-    ]
+  // Add dummy finances with historical data for the chart
+  const categories = ["SPONSORSHIP", "SHOP", "TICKETS", "MEMBERSHIP"];
+  const financeData = [];
+
+  // Generate some income for the last 7 days
+  for (let i = 0; i < 7; i++) {
+    const date = new Date();
+    date.setDate(date.getDate() - i);
+    
+    // Random income between 5000 and 15000 per day
+    financeData.push({
+      label: `Recettes du ${date.toLocaleDateString('fr-FR')}`,
+      amount: 5000 + Math.random() * 10000,
+      type: "INCOME",
+      category: categories[Math.floor(Math.random() * categories.length)],
+      date: date
+    });
+  }
+
+  // Add some big sponsor income
+  financeData.push({
+    label: "Sponsor Emirates - Versement Trimestriel",
+    amount: 150000,
+    type: "INCOME",
+    category: "SPONSORSHIP",
+    date: new Date()
   });
+
+  // Add some expenses (as positive numbers, repo handles the subtraction)
+  financeData.push(
+    { label: "Salaires Staff & Joueurs", amount: 85000, type: "EXPENSE", category: "SALARY", date: new Date() },
+    { label: "Location Stade de l'Élite", amount: 12000, type: "EXPENSE", category: "INFRASTRUCTURE", date: new Date() },
+    { label: "Déplacement Match Extérieur", amount: 4500, type: "EXPENSE", category: "TRAVEL", date: new Date() }
+  );
+
+  for (const f of financeData) {
+    await prisma.finance.create({ data: f });
+  }
 
   console.log(`✅ Seeding completed.`);
 }

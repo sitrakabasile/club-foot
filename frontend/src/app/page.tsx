@@ -13,6 +13,7 @@ import {
   Shield,
   Zap,
   Globe,
+  Sparkles,
 } from "lucide-react";
 import Link from "next/link";
 import { GlassCard } from "@/components/shared/glass-card";
@@ -289,6 +290,82 @@ export default function HomePage() {
         </motion.div>
       </section>
 
+      {/* ---- Fan Zone Preview Section ---- */}
+      <section className="relative z-10 px-4 pb-32">
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-100px" }}
+          className="max-w-6xl mx-auto"
+        >
+          <GlassCard className="border-accent/20 overflow-hidden relative group">
+            {/* Background Decorative Element */}
+            <div className="absolute -right-20 -top-20 w-80 h-80 bg-accent/10 rounded-full blur-[100px] group-hover:bg-accent/20 transition-colors duration-700" />
+            
+            <div className="relative z-10 grid lg:grid-cols-2 gap-12 items-center p-8 md:p-12">
+              <div>
+                <motion.div variants={itemVariants} className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-accent/10 text-accent text-[10px] font-bold uppercase tracking-widest mb-6 border border-accent/20">
+                  <Sparkles className="h-3 w-3" />
+                  Espace Supporter
+                </motion.div>
+                
+                <motion.h2 variants={itemVariants} className="text-4xl md:text-5xl font-black uppercase mb-6 leading-none tracking-tight">
+                  VIVEZ VOTRE <br />
+                  <span className="text-gradient-gold">PASSION</span>
+                </motion.h2>
+                
+                <motion.p variants={itemVariants} className="text-muted-foreground mb-10 leading-relaxed text-lg max-w-md">
+                  Accédez à la boutique officielle, achetez vos billets en un clic et restez connecté à l'actualité de votre club préféré.
+                </motion.p>
+                
+                <motion.div variants={itemVariants} className="flex flex-wrap gap-4">
+                  <Link href="/fan">
+                    <button className="px-8 py-3 rounded-xl bg-accent text-accent-foreground font-bold text-xs uppercase tracking-widest hover:scale-105 transition-transform flex items-center gap-2">
+                      Découvrir la Fan Zone
+                      <ChevronRight className="h-4 w-4" />
+                    </button>
+                  </Link>
+                  <Link href="/shop">
+                    <button className="px-8 py-3 rounded-xl glass glass-hover font-bold text-xs uppercase tracking-widest text-muted-foreground hover:text-foreground">
+                      Boutique
+                    </button>
+                  </Link>
+                </motion.div>
+              </div>
+              
+              <motion.div variants={itemVariants} className="grid grid-cols-2 gap-4">
+                <Link href="/tickets" className="col-span-2">
+                  <GlassCard magnetic className="p-6 bg-primary/10 border-primary/20 group/card">
+                    <div className="flex justify-between items-start mb-4">
+                      <Ticket className="h-8 w-8 text-primary" />
+                      <div className="px-2 py-1 rounded bg-success/20 text-success text-[10px] font-bold">LIVE</div>
+                    </div>
+                    <h3 className="font-bold uppercase text-xl mb-1">Billetterie</h3>
+                    <p className="text-xs text-muted-foreground">Prochain match: FC Nantes vs PSG</p>
+                  </GlassCard>
+                </Link>
+                
+                <Link href="/shop">
+                  <GlassCard magnetic className="p-6 h-full group/card">
+                    <ShoppingBag className="h-6 w-6 text-accent mb-4" />
+                    <h3 className="font-bold uppercase text-sm mb-1">Shop</h3>
+                    <p className="text-[10px] text-muted-foreground">New Kit 2024</p>
+                  </GlassCard>
+                </Link>
+                
+                <Link href="/news">
+                  <GlassCard magnetic className="p-6 h-full group/card">
+                    <Globe className="h-6 w-6 text-success mb-4" />
+                    <h3 className="font-bold uppercase text-sm mb-1">Infos</h3>
+                    <p className="text-[10px] text-muted-foreground">Dernières actus</p>
+                  </GlassCard>
+                </Link>
+              </motion.div>
+            </div>
+          </GlassCard>
+        </motion.div>
+      </section>
     </div>
   );
 }

@@ -133,14 +133,14 @@ export function CommandPalette() {
                   >
                     <User className="mr-2 h-4 w-4" />
                     <span>Mon Profil</span>
-                    <Command.Shortcut>⌘P</Command.Shortcut>
+                    <span className="ml-auto text-xs tracking-widest text-muted-foreground">⌘P</span>
                   </CommandItem>
                   <CommandItem
                     onSelect={() => runCommand(() => router.push("/settings/security"))}
                   >
                     <Settings className="mr-2 h-4 w-4" />
                     <span>Sécurité & 2FA</span>
-                    <Command.Shortcut>⌘S</Command.Shortcut>
+                    <span className="ml-auto text-xs tracking-widest text-muted-foreground">⌘S</span>
                   </CommandItem>
                 </Command.Group>
               </Command.List>

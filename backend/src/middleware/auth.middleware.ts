@@ -7,29 +7,6 @@ import { userRepository } from "../repositories/user.repository";
  */
 export const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    // TEMPORARY: Authentication bypassed for development
-    // We fetch a real user from the DB to ensure valid IDs for relations
-    const user = await userRepository.findByEmail("admin@clubfoot.com");
-    if (user) {
-      (req as any).user = user;
-    } else {
-      (req as any).user = {
-        id: "admin-id",
-        email: "admin@clubfoot.com",
-        role: "ADMIN",
-        isActive: true,
-      };
-    }
-    return next();
-  } catch (error) {
-    console.error("Auth Middleware Error:", error);
-    // Fallback to minimal user object to prevent 500
-    (req as any).user = { id: "admin-id", email: "admin@clubfoot.com", role: "ADMIN" };
-    return next();
-  }
-
-  /*
-  try {
     const authHeader = req.headers.authorization;
     if (!authHeader || !authHeader.startsWith("Bearer ")) {
       return res.status(401).json({ error: "Authentification requise" });
@@ -51,7 +28,6 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
   } catch (error) {
     return res.status(401).json({ error: "Token invalide ou expiré" });
   }
-  */
 };
 
 /**
@@ -59,15 +35,10 @@ export const authMiddleware = async (req: Request, res: Response, next: NextFunc
  */
 export const roleMiddleware = (allowedRoles: string[]) => {
   return (req: Request, res: Response, next: NextFunction) => {
-    // TEMPORARY: RBAC disabled
-    return next();
-
-    /*
     const user = (req as any).user;
     if (!user || !allowedRoles.includes(user.role)) {
       return res.status(403).json({ error: "Accès refusé : privilèges insuffisants" });
     }
     next();
-    */
   };
 };

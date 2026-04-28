@@ -47,7 +47,7 @@ export class PlayerController {
   async delete(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      await playerService.deletePlayer(id);
+      await playerService.deletePlayer(id as string);
       return res.status(204).send();
     } catch (error: any) {
       return res.status(500).json({ error: error.message });

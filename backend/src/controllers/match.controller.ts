@@ -33,7 +33,7 @@ export class MatchController {
   async update(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const match = await matchService.updateMatch(id, req.body);
+      const match = await matchService.updateMatch(id as string, req.body);
       return res.status(200).json(match);
     } catch (error: any) {
       return res.status(400).json({ error: error.message });
@@ -43,7 +43,7 @@ export class MatchController {
   async delete(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      await matchService.deleteMatch(id);
+      await matchService.deleteMatch(id as string);
       return res.status(204).send();
     } catch (error: any) {
       return res.status(400).json({ error: error.message });

@@ -5,7 +5,11 @@
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000/api";
 
-export async function apiFetch(endpoint: string, options: RequestInit = {}) {
+interface CustomRequestInit extends Omit<RequestInit, "body"> {
+  body?: any;
+}
+
+export async function apiFetch(endpoint: string, options: CustomRequestInit = {}) {
   const token = typeof window !== "undefined" ? localStorage.getItem("auth_token") : null;
   
   const headers = {

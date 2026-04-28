@@ -29,7 +29,7 @@ function ResetPasswordForm() {
         <p className="text-muted-foreground text-sm mb-8">
           Le lien de réinitialisation est invalide ou expiré.
         </p>
-        <Link href="/forgot-password" size="sm" className="text-primary hover:underline font-bold text-xs uppercase tracking-widest">
+        <Link href="/forgot-password" className="text-primary hover:underline font-bold text-xs uppercase tracking-widest">
           Demander un nouveau lien
         </Link>
       </div>

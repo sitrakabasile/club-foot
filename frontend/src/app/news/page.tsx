@@ -12,7 +12,8 @@ import {
   TrendingUp,
   MessageSquare,
   Share2,
-  Plus
+  Plus,
+  ArrowLeft
 } from "lucide-react";
 import { GlassCard } from "@/components/shared/glass-card";
 import { PageTransition } from "@/components/layout/page-transition";
@@ -110,6 +111,16 @@ export default function NewsPage() {
   return (
     <PageTransition>
       <div className="p-6 space-y-8">
+        {/* Back Button */}
+        <Link href="/">
+          <button className="group flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-muted-foreground hover:text-foreground transition-colors mb-4">
+            <div className="w-8 h-8 rounded-full glass flex items-center justify-center group-hover:bg-primary/20 group-hover:text-primary transition-all">
+              <ArrowLeft className="h-4 w-4" />
+            </div>
+            Accueil
+          </button>
+        </Link>
+
         {/* Page Header */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>

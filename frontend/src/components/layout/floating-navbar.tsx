@@ -20,6 +20,7 @@ import {
   Ticket,
   Newspaper,
   Stethoscope,
+  Settings,
   User as UserIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -43,6 +44,7 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Ticket,
   Newspaper,
   Stethoscope,
+  Settings,
 };
 
 /**

@@ -15,7 +15,7 @@ export class ContractController {
   async getOne(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const contract = await contractService.getContractById(id);
+      const contract = await contractService.getContractById(id as string);
       return res.status(200).json(contract);
     } catch (error: any) {
       return res.status(404).json({ error: error.message });
@@ -35,7 +35,7 @@ export class ContractController {
   async update(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      const contract = await contractService.updateContract(id, req.body);
+      const contract = await contractService.updateContract(id as string, req.body);
       return res.status(200).json(contract);
     } catch (error: any) {
       return res.status(400).json({ error: error.message });
@@ -45,7 +45,7 @@ export class ContractController {
   async delete(req: Request, res: Response) {
     try {
       const { id } = req.params;
-      await contractService.deleteContract(id);
+      await contractService.deleteContract(id as string);
       return res.status(204).send();
     } catch (error: any) {
       return res.status(400).json({ error: error.message });
