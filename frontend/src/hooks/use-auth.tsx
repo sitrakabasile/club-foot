@@ -53,7 +53,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     setToken(newToken);
     setUser(newUser);
     // Set cookie for proxy access (Next.js proxy needs cookies)
-    Cookies.set("auth_token", newToken, { expires: 7, secure: true, sameSite: "strict" });
+    Cookies.set("auth_token", newToken, {
+      expires: 7,
+      secure: typeof window !== "undefined" && window.location.protocol === "https:",
+      sameSite: "strict",
+    });
     localStorage.setItem("auth_token", newToken);
     localStorage.setItem("auth_user", JSON.stringify(newUser));
     router.push("/dashboard");

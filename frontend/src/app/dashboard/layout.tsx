@@ -15,9 +15,10 @@ import {
   LogOut,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/hooks/use-auth";
+import { useRouter } from "next/navigation";
 
 const MENU_ITEMS = [
   { label: "Vue d'ensemble", href: "/dashboard", icon: LayoutDashboard },
@@ -39,7 +40,26 @@ export default function DashboardLayout({
 }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
   const pathname = usePathname();
-  const { user, logout } = useAuth();
+  const { user, logout, isLoading } = useAuth();
+  const router = useRouter();
+  const isMountedRef = useRef(false);
+
+  useEffect(() => {
+    isMountedRef.current = true;
+    return () => {
+      isMountedRef.current = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!isLoading && !user && isMountedRef.current) {
+      router.replace("/login");
+    }
+  }, [isLoading, user, router]);
+
+  if (!isLoading && !user) {
+    return null;
+  }
 
   return (
     <div className="flex min-h-screen bg-background">

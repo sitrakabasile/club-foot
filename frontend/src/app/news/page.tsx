@@ -28,7 +28,7 @@ const ARTICLES = [
     date: "Il y a 2 heures",
     author: "Marc Rivet",
     comments: 124,
-    image: "/assets/news/bellingham.png",
+    image: "/hero-bg.png",
     featured: true,
   },
   {
@@ -39,7 +39,7 @@ const ARTICLES = [
     date: "Hier",
     author: "Sophie Durand",
     comments: 45,
-    image: "/assets/news/tactics.png",
+    image: "/training_jacket.png",
   },
   {
     id: "3",
@@ -49,7 +49,7 @@ const ARTICLES = [
     date: "Il y a 2 jours",
     author: "Jean Pierre",
     comments: 18,
-    image: "/assets/news/training.png",
+    image: "/ball.png",
   },
   {
     id: "4",
@@ -59,7 +59,7 @@ const ARTICLES = [
     date: "Il y a 3 jours",
     author: "Marc Rivet",
     comments: 256,
-    image: "/assets/news/interview.png",
+    image: "/jersey_home.png",
   },
   {
     id: "5",
@@ -69,7 +69,7 @@ const ARTICLES = [
     date: "Il y a 4 jours",
     author: "Dr. Elena V.",
     comments: 32,
-    image: "/assets/news/medical.png",
+    image: "/bottle.png",
   },
   {
     id: "6",
@@ -79,7 +79,7 @@ const ARTICLES = [
     date: "Il y a 5 jours",
     author: "Sophie Durand",
     comments: 89,
-    image: "/assets/news/academy.png",
+    image: "/scarf.png",
   },
 ];
 
