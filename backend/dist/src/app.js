@@ -22,8 +22,23 @@ const auth_middleware_1 = require("./middleware/auth.middleware");
  */
 const app = (0, express_1.default)();
 // Middleware
+const allowedOrigins = new Set([
+    process.env.FRONTEND_URL,
+    process.env.FRONTEND_URL_PREVIEW,
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "http://localhost:3002",
+].filter(Boolean));
 app.use((0, cors_1.default)({
-    origin: ["http://localhost:3001", "http://localhost:3000", "http://localhost:3002"],
+    origin: (origin, callback) => {
+        if (!origin)
+            return callback(null, true);
+        if (allowedOrigins.has(origin))
+            return callback(null, true);
+        if (/^https:\/\/.*\.vercel\.app$/.test(origin))
+            return callback(null, true);
+        return callback(new Error(`CORS not allowed for origin: ${origin}`));
+    },
     credentials: true,
 }));
 app.use(express_1.default.json({ limit: "10mb" }));
